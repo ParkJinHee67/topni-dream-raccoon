@@ -3,86 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>톱니바꿈의 테트리스</title>
-    <link rel="stylesheet" href="style.css">
+    <title>톱니바꿈의 너구리 - 클래식 아케이드 게임</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>⚙️ 톱니바꿈의 테트리스 ⚙️</h1>
-        </header>
+    <div class="game-container">
+        <div class="game-title">
+            <h1>🦝 톱니바꿈의 너구리 🍔</h1>
+            <p class="subtitle">Classic BurgerTime Adventure</p>
+        </div>
         
-        <div class="game-container">
-            <div class="game-info">
-                <div class="score-section">
-                    <h3>점수</h3>
-                    <div id="score">0</div>
+        <div class="game-header">
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="label">1UP</span>
+                    <span class="value" id="player-score">0</span>
                 </div>
-                
-                <div class="level-section">
-                    <h3>레벨</h3>
-                    <div id="level">1</div>
+                <div class="score-item">
+                    <span class="label">TOP SCORE</span>
+                    <span class="value" id="top-score">10000</span>
                 </div>
-                
-                <div class="lines-section">
-                    <h3>라인</h3>
-                    <div id="lines">0</div>
+                <div class="score-item">
+                    <span class="label">LEVEL</span>
+                    <span class="value" id="level">1</span>
                 </div>
-                
-                <div class="highscore-section">
-                    <h3>최고점수</h3>
-                    <div id="highscore">0</div>
-                    <div id="highscore-name" class="highscore-name">-</div>
+                <div class="score-item">
+                    <span class="label">LIVES</span>
+                    <span class="value" id="lives">3</span>
                 </div>
-                
-                <div class="next-section">
-                    <h3>다음 블록</h3>
-                    <canvas id="next-canvas" width="120" height="120"></canvas>
-                </div>
-                
-                <div class="controls">
-                    <h3>조작법</h3>
-                    <p>← → : 좌우 이동</p>
-                    <p>↓ : 빠르게 내리기</p>
-                    <p>↑ : 회전</p>
-                    <p>Space : 즉시 낙하</p>
-                    <p>P : 일시정지</p>
-                    <p>M : 음향 on/off</p>
-                </div>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+        </div>
+        
+        <div class="game-controls">
+            <div class="instructions">
+                <h3>조작법</h3>
+                <p><strong>방향키:</strong> 이동 및 사다리 타기</p>
+                <p><strong>스페이스바:</strong> 후추 뿌리기</p>
+                <p><strong>P:</strong> 일시정지</p>
+                <p><strong>R:</strong> 게임 재시작</p>
+                <p><strong>M:</strong> 음소거/음소거 해제</p>
             </div>
             
-            <div class="game-area">
-                <div class="game-controls">
-                    <button id="mute-btn" class="control-btn">🔊 음향</button>
-                    <button id="start-btn" class="control-btn">게임 시작</button>
-                    <button id="pause-btn" class="control-btn">일시정지</button>
-                    <button id="reset-btn" class="control-btn">다시 시작</button>
+            <div class="mobile-controls">
+                <div class="d-pad">
+                    <button class="control-btn" id="btn-up">↑</button>
+                    <div class="middle-row">
+                        <button class="control-btn" id="btn-left">←</button>
+                        <button class="control-btn action-btn" id="btn-pepper">후추</button>
+                        <button class="control-btn" id="btn-right">→</button>
+                    </div>
+                    <button class="control-btn" id="btn-down">↓</button>
                 </div>
-                
-                <canvas id="game-canvas" width="300" height="600"></canvas>
-                <div id="game-over" class="game-over hidden">
-                    <h2>게임 오버!</h2>
-                    <p>최종 점수: <span id="final-score">0</span></p>
-                    <button onclick="resetGame()">다시 시작</button>
+                <div class="audio-controls">
+                    <button class="control-btn" id="btn-mute">🔊</button>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- 최고점수 달성 모달 -->
-    <div id="highscore-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2>🎉 새로운 최고점수! 🎉</h2>
-            <p>점수: <span id="new-highscore">0</span></p>
-            <p>이름을 입력해주세요:</p>
-            <input type="text" id="player-name" maxlength="10" placeholder="이름 입력">
-            <div class="modal-buttons">
-                <button onclick="saveHighScore()">저장</button>
-                <button onclick="skipHighScore()">건너뛰기</button>
-            </div>
+        
+        <div class="game-status" id="game-status">
+            <div class="status-message" id="status-message">스페이스바를 눌러 톱니바꿈의 너구리 모험을 시작하세요!</div>
         </div>
     </div>
     
-    <script src="tetris.js"></script>
+    <script src="game.js"></script>
 </body>
 </html> 
